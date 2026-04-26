@@ -1,3 +1,8 @@
 import pg from "pg";
-const db = new pg.Client(process.env.DATABASE_URL);
-export default db;
+const { Client } = pg;
+
+const client = new Client({
+  connectionString: process.env.DATABASE_URL || "postgres://localhost:5432/filez",
+});
+
+export default client;

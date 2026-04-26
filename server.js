@@ -1,10 +1,14 @@
-import app from "#app";
-import db from "#db/client";
+const app = require("./app");
+const client = require("./db/client");
 
-const PORT = process.env.PORT ?? 3000;
+const PORT = process.env.PORT || 3000;
 
-await db.connect();
+async function startServer() {
+  await client.connect();
 
-app.listen(PORT, () => {
-  console.log(`Listening on port ${PORT}...`);
-});
+  app.listen(PORT, () => {
+    console.log(`Listening on port ${PORT}`);
+  });
+}
+
+startServer();
